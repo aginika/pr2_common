@@ -19,6 +19,7 @@
       <dischargeVoltage>15.52</dischargeVoltage>
       <chargeVoltage>16.41</chargeVoltage>
     </plugin>
+    <plugin name="gazebo_force_set_joint_position" filename="libgazebo_force_set_joint_position.so"/>
   </gazebo>
 
 </robot>
