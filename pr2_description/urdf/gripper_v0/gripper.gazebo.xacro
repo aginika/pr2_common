@@ -59,18 +59,6 @@
     <gazebo reference="${prefix}_l_finger_tip_link">
       <turnGravityOff>true</turnGravityOff>
       <selfCollide>false</selfCollide>
-      <sensor type="contact" name="${prefix}_l_finger_tip_contact_sensor">
-        <update_rate>100.0</update_rate>
-        <contact>
-          <collision>${prefix}_l_finger_tip_link_collision</collision>
-        </contact>
-        <plugin name="${prefix}_l_finger_tip_gazebo_ros_bumper_controller" filename="libgazebo_ros_bumper.so">
-          <alwaysOn>true</alwaysOn>
-          <frameName>${prefix}_l_finger_tip_link</frameName>
-          <updateRate>100.0</updateRate>
-          <bumperTopicName>${prefix}_l_finger_tip_bumper</bumperTopicName>
-        </plugin>
-      </sensor>
       <mu1 value="${finger_tip_mu}" />
       <mu2 value="${finger_tip_mu}" />
       <kp  value="10000000.0" />
@@ -88,38 +76,13 @@
     <gazebo reference="${prefix}_r_finger_tip_link">
       <turnGravityOff>true</turnGravityOff>
       <selfCollide>false</selfCollide>
-      <sensor type="contact" name="${prefix}_r_finger_tip_contact_sensor">
-        <update_rate>100.0</update_rate>
-        <contact>
-          <collision>${prefix}_r_finger_tip_link_collision</collision>
-        </contact>
-        <plugin name="${prefix}_r_finger_tip_gazebo_ros_bumper_controller" filename="libgazebo_ros_bumper.so">
-          <alwaysOn>true</alwaysOn>
-          <frameName>${prefix}_r_finger_tip_link</frameName>
-          <updateRate>100.0</updateRate>
-          <bumperTopicName>${prefix}_r_finger_tip_bumper</bumperTopicName>
-        </plugin>
-      </sensor>
       <mu1 value="${finger_tip_mu}" />
       <mu2 value="${finger_tip_mu}" />
       <kp  value="10000000.0" />
       <kd  value="1.0" />
     </gazebo>
     <gazebo>
-      <plugin name="p3d_${prefix}_l_finger_controller" filename="libgazebo_ros_p3d.so">
-        <alwaysOn>true</alwaysOn>
-        <updateRate>100.0</updateRate>
-        <bodyName>${prefix}_l_finger_link</bodyName>
-        <topicName>${prefix}_l_finger_pose_ground_truth</topicName>
-        <gaussianNoise>0.0</gaussianNoise>
-        <frameName>base_link</frameName>
-      </plugin>
-      <plugin name="f3d_${prefix}_l_finger_controller" filename="libgazebo_ros_f3d.so">
-        <alwaysOn>true</alwaysOn>
-        <updateRate>100.0</updateRate>
-        <bodyName>${prefix}_l_finger_link</bodyName>
-        <topicName>${prefix}_l_finger_force_ground_truth</topicName>
-      </plugin>
+      
     </gazebo>
     <gazebo reference="${prefix}_r_finger_tip_joint">
       <stopKd value="${finger_stop_kd}" />
@@ -258,16 +221,6 @@
     </gazebo>
 
     <gazebo>
-      <plugin name="p3d_${side}_gripper_palm_controller" filename="libgazebo_ros_p3d.so">
-        <alwaysOn>true</alwaysOn>
-        <updateRate>100.0</updateRate>
-        <bodyName>${side}_gripper_palm_link</bodyName>
-        <topicName>${side}_gripper_palm_pose_ground_truth</topicName>
-        <xyzOffsets>0 0 0</xyzOffsets>
-        <rpyOffsets>0 0 0</rpyOffsets>
-        <gaussianNoise>0.0</gaussianNoise>
-        <frameName>map</frameName>
-      </plugin>
 
       <!-- a formal implementation of grasp hack in gazebo with fixed joint -->
       <gripper name="${side}_grasp_hack">
